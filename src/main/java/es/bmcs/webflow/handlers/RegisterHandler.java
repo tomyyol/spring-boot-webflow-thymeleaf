@@ -1,12 +1,12 @@
-package com.example.demo.handlers;
+package es.bmcs.webflow.handlers;
 
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.models.BillingInfo;
-import com.example.demo.models.PersonalInfo;
-import com.example.demo.models.RegisterModel;
+import es.bmcs.webflow.models.BillingInfo;
+import es.bmcs.webflow.models.PersonalInfo;
+import es.bmcs.webflow.models.RegisterModel;
 
 @Component
 public class RegisterHandler {

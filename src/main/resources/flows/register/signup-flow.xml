@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
-	<var name="personalInfo" class="com.example.demo.models.PersonalInfo" />
-	<var name="billingInfo" class="com.example.demo.models.BillingInfo" />
+	<var name="personalInfo" class="es.bmcs.webflow.models.PersonalInfo" />
+	<var name="billingInfo" class="es.bmcs.webflow.models.BillingInfo" />
 	
 	<!-- returning and adding inside flow registerModel instance -->
 	<on-start>

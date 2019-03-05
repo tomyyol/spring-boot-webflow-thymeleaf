@@ -1,4 +1,4 @@
-package com.example.demo.models;
+package es.bmcs.webflow.models;
 
 import java.io.IOException;
 import java.io.Serializable;

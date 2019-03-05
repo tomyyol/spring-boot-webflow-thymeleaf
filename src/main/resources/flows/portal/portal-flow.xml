@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
+						http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+	<var name="start" class="es.bmcs.webflow.handlers.StartHandler" />
+	<var name="index" class="es.bmcs.webflow.handlers.IndexHandler" />
+	
+	<view-state id="view" view="flows/portal/view">
+		<on-render>
+			<evaluate expression="index.loadData(flowRequestContext)" />
+		</on-render>
+		
+		<transition on="pendientes" to="view" />
+		<transition on="resueltos" to="view" />
+		<transition on="nuevoTicket" to="nuevo"/>
+	</view-state>
+
+	<view-state id="nuevo" view="flows/portal/nuevo">
+		<transition on="evaluar" to="nuevaPeticion" />
+		<transition on="pendientes" to="view" />
+		<transition on="resueltos" to="view" />
+		<transition on="nuevoTicket" to="nuevo"/>
+		<transition on="cancel" to="view"/>
+	</view-state>
+	
+	<action-state id="nuevaPeticion">
+		<evaluate expression="start.guardarNuevoTicket(flowRequestContext)" />
+		<transition on="true" to="view" />
+		<transition on="false" to="nuevo" />
+	</action-state>
+
+</flow>

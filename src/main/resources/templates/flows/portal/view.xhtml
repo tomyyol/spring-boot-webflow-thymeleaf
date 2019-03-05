@@ -1,0 +1,52 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/layouts/basic.xhtml">
+
+	<ui:define name="contenido">
+		<h:form>
+			<h:panelGroup layout="block" rendered="#{facesHelper.error}">
+				<!-- <h:messages /> -->
+				<p:messages id="messages" showDetail="false" closable="true">
+					<p:autoUpdate />
+				</p:messages>
+			</h:panelGroup>
+			<p:dataTable var="peticion" value="#{index.peticiones}" rows="5" paginator="true">
+				<p:column headerText="Id">
+					<h:outputText value="#{peticion.id}" />
+				</p:column>
+				<p:column headerText="Título">
+					<h:outputText value="#{peticion.titulo}" />
+				</p:column>
+				<p:column headerText="Tipo">
+					<h:outputText value="#{peticion.tipoTicket}" />
+				</p:column>
+				<p:column headerText="Aplicación">
+					<h:outputText value="#{peticion.aplicacion} - #{peticion.modulo}" />
+				</p:column>
+				<p:column headerText="Estado" sortBy="#{peticion.idEstado}">
+					<h:outputText value="#{index.getNombreEstado(peticion)}" />
+				</p:column>
+				<p:column headerText="Fecha">
+					<h:outputText value="#{index.getUltimaFecha(peticion)}" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<br />
+			<p:chart type="pie" model="#{index.pieModel}" style="width:400px;height:300px" />
+
+			<!-- HTML -->
+			<div id="chartdiv" style="height: 500px; width: 1000px;"></div>
+
+			<!-- Chart code -->
+			<script>
+			#{index.getPieChart()}
+			</script>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

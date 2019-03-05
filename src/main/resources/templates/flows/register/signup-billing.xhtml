@@ -9,6 +9,7 @@
 			<div class="col-md-12">
 				<h1>Billing Information (Stage 2)</h1>
 				<hr />
+				<img th:src="@{/images/avatar.png}"/>
 				<a th:href="@{'~' + ${flowExecutionUrl} + '&_eventId_home'}" class="btn btn-danger">Home</a>
 
 				<form method="post" th:object="${billingInfo}" >

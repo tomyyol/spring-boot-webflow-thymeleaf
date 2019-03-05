@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="metadata" />
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<!-- <h:outputStylesheet name="css/flat-ui.css" /> -->
+	<title>Portal IT</title>
+</h:head>
+<h:body>
+	<h:outputScript name="scripts/core.js" target="head"/>
+	<h:outputScript name="scripts/charts.js" target="head"/>
+	<h:outputScript name="scripts/es_ES.js" target="head"/>
+	<h:outputScript name="scripts/animated.js" target="head"/>
+	<p:layout>
+		<p:layoutUnit position="north" size="60" closable="false"
+			resizable="false" collapsible="true">
+			<div>
+				<div style="float: left; padding-left: 10px;">
+					<h:graphicImage	value="/images/babcockBlue.png"	height="20" width="100" />
+				</div>
+				<div style="float: right; height: 25px;">
+					<h:form>
+						<p:commandLink id="linkButton">
+							<h:graphicImage	value="/images/avatar.png"	height="24" width="24"	style="border-radius:12px; padding-right:5px; " />
+						</p:commandLink>
+						<p:menu overlay="true" trigger="linkButton" my="left top" at="left bottom">
+							<p:menuitem value="Salir" icon="ui-icon-key" action="exit" />
+						</p:menu>
+					</h:form>
+				</div>
+			</div>
+		</p:layoutUnit>
+		<p:layoutUnit position="center">
+			<ui:insert name="contenido">
+					Contenido por defecto de la cabecera (logo, opciones, usuario)    
+				</ui:insert>
+		</p:layoutUnit>
+		<p:layoutUnit position="west" size="250" maxSize="500" minSize="100"
+			resizable="false" closable="false">
+			<h:form>
+				<p:menu toggleable="true">
+					<p:submenu label="Peticiones">
+						<p:menuitem value="Pendientes" icon="ui-icon-triangle-1-e"
+							action="pendientes" />
+						<p:menuitem value="Resueltos" icon="ui-icon-triangle-1-e"
+							action="resueltos" />
+						<p:menuitem value="Nuevo" icon="ui-icon-plus" action="nuevoTicket" />
+					</p:submenu>
+				</p:menu>
+			</h:form>
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+
+</html>

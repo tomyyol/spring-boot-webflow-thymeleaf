@@ -1,0 +1,75 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	    		xmlns:ui="http://java.sun.com/jsf/facelets"
+	  			xmlns:h="http://java.sun.com/jsf/html"
+	  			xmlns:f="http://java.sun.com/jsf/core"
+	  			xmlns:p="http://primefaces.org/ui"
+				template="/WEB-INF/layouts/basic.xhtml">
+
+	<ui:define name="contenido">
+		<h:form id="start-form">
+			<h:panelGroup layout="block" rendered="#{facesHelper.error}">
+				<!-- <h:messages /> -->
+				<p:messages id="messages" showDetail="false" closable="true">
+			        <p:autoUpdate />
+			    </p:messages>
+			</h:panelGroup>
+			<p:panel header="Datos iniciales">
+				<p:panelGrid columns="3" cellpadding="4" layout="grid">
+					<p:outputLabel for="tipoTicket" value="Tipo de ticket" />
+					<p:selectOneMenu id="tipoTicket" value="#{start.tipoTicket}" style="width:150px" required="true">
+						<f:ajax event="change" render=":start-form" />
+						<f:selectItem itemLabel="Elige el tipo" itemValue="" noSelectionOption="true" />
+						<f:selectItems value="#{start.tipologiasTicket}" />
+					</p:selectOneMenu>
+					<p:outputLabel value="" />
+					
+					<p:outputLabel for="aplicacion" value="Aplicación" />
+					<p:selectOneMenu id="aplicacion" value="#{start.aplicacion}" style="width:150px" required="true">
+						<f:ajax event="change" render=":start-form" />
+						<f:selectItem itemLabel="Elige la aplicación" itemValue="" noSelectionOption="true" />
+						<f:selectItems value="#{start.aplicaciones}" />
+					</p:selectOneMenu>
+					<p:panel id="zonaModulo" visible="#{start.aplicacion eq 'Netcom'}" style="border: 0px !important;">
+						<p:outputLabel for="modulo" value="Módulo asociado" rendered="#{start.aplicacion eq 'Netcom'}"/>
+						<p:selectOneMenu id="modulo" value="#{start.modulo}" style="width:150px" rendered="#{start.aplicacion eq 'Netcom'}" required="true">
+							<f:selectItem itemLabel="Elige el módulo" itemValue="" noSelectionOption="true" />
+							<f:selectItems value="#{start.modulosAplicacion}" />
+						</p:selectOneMenu>
+					</p:panel>
+	
+					<p:outputLabel for="titulo" value="Título " />
+					<p:inputText id="titulo" value="#{start.titulo}" required="true"/>
+					<p:outputLabel value="" />
+					
+					<p:outputLabel for="descripcionStart" value="Descripción" />
+					<p:inputTextarea id="descripcionStart" rows="6" cols="60" value="#{start.descripcion}" required="true" />
+					<p:outputLabel value="" />
+					
+					<p:outputLabel for="prioridad" value="Prioridad" />
+					<p:selectOneMenu id="prioridad" value="#{start.prioridad}" style="width:150px" required="true">
+						<f:selectItem itemLabel="Elige la prioridad" itemValue="" noSelectionOption="true" />
+						<f:selectItems value="#{start.prioridades}" />
+					</p:selectOneMenu>
+					<p:outputLabel value="" />
+					
+					<p:outputLabel for="departamento" value="Departamento" />
+					<p:selectOneMenu id="departamento" value="#{start.departamento}" style="width:150px" required="true">
+						<f:selectItem itemLabel="Elige el departamento" itemValue="" noSelectionOption="true" />
+						<f:selectItems value="#{start.departamentos}" />
+					</p:selectOneMenu>
+					<p:outputLabel value="" />
+					
+					<p:outputLabel for="fecha" value="Fecha tope:" />
+			        <p:calendar id="fecha" value="#{start.fechaTope}" showOn="button" required="true"/>
+			        <p:outputLabel value="" />
+				
+					<!-- Condicional: nuevo desarrollo o incidencia -->
+					<p:commandButton id="completeForm" value="Enviar" icon="ui-icon-disk" action="evaluar" ajax="false"/>
+			</p:panelGrid>
+		</p:panel>
+	
+		</h:form>
+	</ui:define>
+
+</ui:composition>

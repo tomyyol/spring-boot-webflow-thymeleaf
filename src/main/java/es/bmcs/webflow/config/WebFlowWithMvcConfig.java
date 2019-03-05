@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package es.bmcs.webflow.config;
 
 import java.util.Collections;
 
@@ -89,7 +89,7 @@ public class WebFlowWithMvcConfig extends AbstractFlowConfiguration {
 		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
 		templateResolver.setPrefix("templates/");
 		templateResolver.setCacheable(false);
-		templateResolver.setSuffix(".html");
+		templateResolver.setSuffix(".xhtml");
 		templateResolver.setTemplateMode("HTML5");
 		templateResolver.setCharacterEncoding("UTF-8");
 		return templateResolver;
